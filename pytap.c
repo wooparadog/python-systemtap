@@ -8,6 +8,6 @@
 #include <sys/sdt.h>
 #include "probes.h"
 
-void probe(char* api_name){
-  DTRACE_PROBE1(wooparadog, saw__word, 1);
+void probe(char* api_name, char* args){
+  DTRACE_PROBE2(pystap, entry, api_name, args);
 }

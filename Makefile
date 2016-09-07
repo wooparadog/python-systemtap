@@ -1,10 +1,11 @@
 DTRACE=dtrace
 CFLAGS = -O2 -g -Wall -D_GNU_SOURCE -fPIC
+TARGET=libpystap.so
 CC = gcc
 
-all: probes.o probes.h
+all: lib
 	$(CC) $(CFLAGS) -c -m64 -o pytap.o pytap.c 
-	$(CC) -shared -o lib.so pytap.o probes.o
+	$(CC) -shared -o $(TARGET) pytap.o probes.o
 
 lib: probes.h probes.o
 
@@ -15,4 +16,4 @@ probes.o: probes.d
 	$(DTRACE) -64 -C -G -s $< -o $@
 
 clean:
-	rm lib.so probes.h probes.o pytap.o
+	rm $(TARGET) probes.h probes.o pytap.o

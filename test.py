@@ -1,16 +1,16 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# vim:fenc=utf-8
-#
-# Copyright © 2016 WooParadog <guohaochuan@gmail.com>
-#
-# Distributed under terms of the MIT license.
 
-import ctypes
+from pystap import dtrace_deco
 
-utils = ctypes.cdll.LoadLibrary('./lib.so')
+@dtrace_deco
+def its_a_test(a_para, that_para=None):
+    print a_para, that_para
 
-import time
-while 1:
-    time.sleep(1)
-
+if __name__ == '__main__':
+    import time
+    i = 0
+    while 1:
+        i += 1
+        its_a_test(time.time(), that_para=i)
+        time.sleep(1)

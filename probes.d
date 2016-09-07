@@ -1,4 +1,3 @@
-provider wooparadog {
-  probe yes(int);
+provider pystap {
+  probe entry(char *, char *);
 };
-
